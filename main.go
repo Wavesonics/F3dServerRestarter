@@ -41,6 +41,7 @@ func main() {
 
 func initApp(auth string) http.Handler {
 	router := gin.New()
+	router.Use(gin.Recovery())
 	router.Use(ginglog.Logger(3 * time.Second))
 
 	router.GET("/restart", func(c *gin.Context) {
