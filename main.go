@@ -62,7 +62,7 @@ func initApp(auth string) http.Handler {
 
 			c.String(http.StatusOK, "Server[s] restarted")
 		} else {
-			c.String(http.StatusUnauthorized, "Incorrect authorization")
+			c.String(http.StatusUnauthorized, fmt.Sprintf("Incorrect authorization: %s", providedAuth, auth))
 		}
 	})
 
