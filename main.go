@@ -44,10 +44,10 @@ func initApp(auth string) http.Handler {
 	router.Use(ginglog.Logger(3 * time.Second))
 
 	router.GET("/restart", func(c *gin.Context) {
-		providedAuth := c.Param("auth")
+		providedAuth := c.Query("auth")
 
 		if providedAuth == auth {
-			whichServer := c.Param("server")
+			whichServer := c.Query("server")
 
 			switch whichServer {
 			case "official1":
@@ -62,7 +62,7 @@ func initApp(auth string) http.Handler {
 
 			c.String(http.StatusOK, "Server[s] restarted")
 		} else {
-			c.String(http.StatusUnauthorized, fmt.Sprintf("Incorrect authorization: %s", providedAuth, auth))
+			c.String(http.StatusUnauthorized, fmt.Sprintf("Incorrect authorization: %s || %s", providedAuth, auth))
 		}
 	})
 
