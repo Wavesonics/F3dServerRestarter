@@ -71,12 +71,13 @@ func initApp(auth string) http.Handler {
 }
 
 func executeServerRestart(serverNumber int) {
-	command := fmt.Sprintf("systemctl restart game-server-%d", serverNumber)
-	executeCommand(command)
+
+	scriptName := fmt.Sprintf("restart-server-%d.sh", serverNumber)
+	executeShellScript(scriptName)
 }
 
-func executeCommand(command string) {
-	cmd := exec.Command(command)
+func executeShellScript(shellScren string) {
+	cmd := exec.Command("/bin/sh", shellScren)
 
 	err := cmd.Run()
 
