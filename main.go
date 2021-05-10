@@ -63,7 +63,7 @@ func initApp(auth string) http.Handler {
 
 			c.String(http.StatusOK, "Server[s] restarted")
 		} else {
-			c.String(http.StatusUnauthorized, fmt.Sprintf("Incorrect authorization: %s || %s", providedAuth, auth))
+			c.String(http.StatusUnauthorized, "Incorrect authorization")
 		}
 	})
 
@@ -71,7 +71,6 @@ func initApp(auth string) http.Handler {
 }
 
 func executeServerRestart(serverNumber int) {
-
 	scriptName := fmt.Sprintf("restart-server-%d.sh", serverNumber)
 	executeShellScript(scriptName)
 }
