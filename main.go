@@ -35,8 +35,6 @@ func main() {
 	serveAddr := net.JoinHostPort(ipAddr, strconv.Itoa(portNum))
 	router := initApp(auth)
 	http.ListenAndServe(serveAddr, router)
-
-	glog.Info("hello world")
 }
 
 func initApp(auth string) http.Handler {
